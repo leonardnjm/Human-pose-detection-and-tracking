@@ -1,5 +1,7 @@
 import cv2
 import mediapipe as mp
+
+
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 
@@ -26,12 +28,27 @@ while cap.isOpened():
   mp_drawing.draw_landmarks(
       image, results.pose_landmarks, mp_pose.POSE_CONNECTIONS)
   image = cv2.circle(image, (150, 22), radius=0, color=(255, 0, 255), thickness=100)
+
+  #print('nose landmark:', results.pose_landmarks.landmark[mp_pose.PoseLandmark.NOSE])
+  #print(results.pose_landmarks.PoseLandmark)
+  #print(mp_pose.PoseLandmark.landmark[mp_pose.PoseLandmark.NOSE])
+  #print(mp_pose.PoseLandmark.NOSE.value)
+
   #print(mp_pose.PoseLandmark.LEFT_EAR.value)
+  #print(mp_pose.PoseLandmark.RIGHT_HIP.value)
+  #print(mp_pose.PoseLandmark.LEFT_EYE)
+  #print(results.pose_landmarks)
+  #print(results.pose_landmarks)
+  #print(mp_pose.POSE_CONNECTIONS)
 
 
-  print(results.pose_landmarks)
-  ##print(mp_pose.POSE_CONNECTIONS)
   cv2.imshow('MediaPipe Pose', image)
+  
+  print(
+  f'Nose coordinates: ('
+  f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.NOSE].x}, '
+  f'{results.pose_landmarks.landmark[mp_pose.PoseLandmark.NOSE].y})'
+  )
 
   # if mp_pose.PoseLandmark = 11:
   #   print("yes")
@@ -42,3 +59,4 @@ while cap.isOpened():
 
 pose.close()
 cap.release()
+
